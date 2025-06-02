@@ -76,7 +76,14 @@ if (!isset($_SESSION['roll'])) {
             event.preventDefault();
             if(event.target.matches('.visible-on')){
                 // alert(event.target.dataset.id);
-                data.target.innerText="off";
+                if(event.target.dataset.id==1){
+                    event.target.dataset.id=0;
+                    event.target.textContent="off";
+                } else {
+                    event.target.dataset.id=1;
+                    event.target.textContent="on";
+                }
+                // data.target.innerText="off";
             }
         });
     </script>
