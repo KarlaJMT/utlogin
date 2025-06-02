@@ -1,8 +1,24 @@
 <?php
-    session_start();
-    var_dump($_SESSION);
+session_start();
+
+if(isset($_SESSION['nombre']) && isset($_SESSION['id']) && isset($_SESSION['roll'])) {
+    $nombre = $_SESSION['nombre'];
+    $id = $_SESSION['id'];
+    $roll = $_SESSION['roll'];
+    
+    
     session_destroy();
+    
+    
+    echo "<h2>Sesión cerrada</h2>";
+    echo "<p>Cerrar sesión como: $nombre (ID: $id, Rol: $roll)</p>";
+    echo "<a href='../index.php'>Volver al inicio</a>";
+} else {
+    header("location:../index.php");
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +28,6 @@
     <title>LOG OUT</title>
 </head>
 <body>
-    <a href="../index.php"> HOME</a>
+    <a href="../index.php"> LOGOUT</a>
 </body>
 </html>
