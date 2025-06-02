@@ -70,7 +70,7 @@
         }
         /*Consultar a la base de datos */
 
-        $con = new mysqli('localhost','root','btspavedtheway','utlogin');
+        $con = new mysqli('localhost','root','','utlogin');
          
         // connect_errno: Verifica si ocurrió un error al intentar conectar a la base de datos.
         // La propiedad 'connect_errno' pertenece al objeto de conexión mysqli.
@@ -138,12 +138,13 @@
                     $_SESSION['roll']=$user['roll'];
                     $_SESSION['id']=$user['id'];
                     header("location:sys/".$user['roll']."_home.php");
-                    $result->free();
+                    $result->free(); // borra o elimina todos los valores que se recuperaron de la consulta, con eso 
 
                     }
                 }
             }
         }
+        $con->close();
 
         /*
         $users[]=array('nombre'=>'jose','passw'=>'Changos','roll'=>'admin');
@@ -210,5 +211,14 @@
 
     /*SELECT * from users;*/
         ?>
+
+        <script>
+            document.getElementByClass('visible-on').addEventListener('click',function(){
+                alert();
+            });
+        </script>
+
+        <!-- Bootstrap JS -->
+         <script src=""> </script>
 </body>
 </html>
