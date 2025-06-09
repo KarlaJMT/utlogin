@@ -35,8 +35,22 @@ switch ($data['tb']) {
                     // Si hubo un error, retorna un mensaje de error
                     $res = array('res' => '2', 'msg' => 'Error: Registro no localizado.');
                 }
+                break;
+            }
+            case 'new': {
+                $query="insert into users(username, psw, visible, roll) values(?, ?, ?, ?)";
+                $stmt=$con->prepare($query);
+                $stmt->bind_param('ssis',$data['username'],$data['psw'],$data['visible'],$data['roll']);
+                // Ejecutamos la consulta.
+                if($stmt->execute()){
+                    $res=array('res'=>'1','id'=>$data['username']);
+                } else {
+                    $res = array('res' => '3', 'msg' => 'Error: No se pudo crear el usuario.');
+                }
+                break;
             }
         }
+        
     }
 }
 
